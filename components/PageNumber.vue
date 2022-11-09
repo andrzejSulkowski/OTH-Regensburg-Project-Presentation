@@ -2,7 +2,6 @@
 import { defineProps, computed, ref} from 'vue'
 
 const nav = ref($slidev.nav)
-console.log("$slidev.nav", $slidev.nav)
 
 </script>
 <template>
@@ -17,6 +16,6 @@ div {
     position:fixed;
     right: 20px;
     bottom: 5px;
-    color: rgba(251, 251, 251, 0.363);
+    color: var(--prism-foreground);
 }
 </style>

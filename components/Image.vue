@@ -1,21 +1,25 @@
 <script setup lang="ts">
-import { defineProps, computed, ref} from 'vue'
+import { defineProps, computed, ref, onMounted} from 'vue'
 import { useFigureStore } from './../stores/figures/figuresStore'
 
 const props = defineProps({
+    localSrc: {type: String, default: (() => null)},
     src: {type: String, default: (() => '')},
     caption: {type: String, default: (() => '')}
 })
 const figureStore = useFigureStore()
 
-const index = figureStore.getIndex()
-
+const getSrc = computed(() => props.localSrc ? props.localSrc : props.src)
+let index = ref(0)
+onMounted(() => {
+    index.value = figureStore.getIndex()
+})
 
 </script>
 <template>
     <div> 
-        <img :src="props.src" alt="">
-        <span>{{ index + props.caption}}</span>
+        <img :src="getSrc" alt="">
+        <span>Fig.{{index}} {{props.caption}}</span>
     </div>
 </template>
 

@@ -15,6 +15,7 @@ export const useFigureStore = defineStore({
 
   actions: {
     getIndex(){
+      console.log("HIT")
       let currentCounter = this.counter;
       this.counter++;
       return currentCounter
