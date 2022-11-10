@@ -22,7 +22,12 @@ drawings:
 # use UnoCSS
 css: unocss
 layout: intro
+hideInToc: true
 ---
+# Mobile App Schwachstellenanalyse – Demo Android
+<span><simple-icons-android mr-1/> </span> Andrzej Kazimierz Sulkowski - WiSe 22/23 
+
+
 
 ---
 theme: ./
@@ -31,15 +36,6 @@ layout: intro
 # https://sli.dev/custom/highlighters.html
 highlighter: shiki
 css: unocss
-hideInToc: true
----
-
-
-# Mobile App Schwachstellenanalyse – Demo Android
-<span><simple-icons-android mr-1/> </span> Andrzej Kazimierz Sulkowski - WiSe 22/23 
-
-
----
 ---
 <div class="px-15 py-15"> 
   <Toc 
@@ -201,31 +197,31 @@ function updateUser(id: number, update: User) {
 # Components
 
 <div grid="~ cols-2 gap-4">
-<div>
+  <div>
 
-You can use Vue components directly inside your slides.
+  You can use Vue components directly inside your slides.
 
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
+  We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
 
-```html
-<Counter :count="10" />
-```
+  ```html
+  <Counter :count="10" />
+  ```
 
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
+  <!-- ./components/Counter.vue -->
+  <Counter :count="10" m="t-4" />
 
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
+  Check out [the guides](https://sli.dev/builtin/components.html) for more.
 
-</div>
-<div>
+  </div>
+  <div>
 
-```html
-<Tweet id="1390115482657726468" />
-```
+  ```html
+  <Tweet id="1390115482657726468" />
+  ```
 
-<Tweet id="1390115482657726468" scale="0.65" />
+  <Tweet id="1390115482657726468" scale="0.65" />
 
-</div>
+  </div>
 </div>
 
 <!--
