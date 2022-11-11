@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import { defineProps, computed, ref, onMounted} from 'vue'
 import { useFigureStore } from './../stores/figures/figuresStore'
+import { IFigure } from './../stores/figures/figure.model'
 
 const props = defineProps({
     localSrc: {type: String, default: (() => null)},
     src: {type: String, default: (() => '')},
-    caption: {type: String, default: (() => '')}
+    caption: {type: String, default: (() => '')},
+    id: {type: Number, default: (() => null)}
 })
 const figureStore = useFigureStore()
 
 const getSrc = computed(() => props.localSrc ? props.localSrc : props.src)
 let index = ref(0)
 onMounted(() => {
-    index.value = figureStore.getIndex()
+    const figure : IFigure = {src: props.src, caption: props.caption, id: props.id, counter: null}
+
+    index.value = figureStore.addFigure(figure)
 })
 
 </script>
@@ -26,7 +30,7 @@ onMounted(() => {
 <style scoped>
 
     div{
-        width: 200px;
+        width: 100%;
         display: flex;
         flex-direction: column;
     }

@@ -24,6 +24,7 @@ css: unocss
 layout: intro
 hideInToc: true
 ---
+<Initializer/>
 # Mobile App Schwachstellenanalyse – Demo Android
 <span><simple-icons-android mr-1/> </span> Andrzej Kazimierz Sulkowski - WiSe 22/23 
 

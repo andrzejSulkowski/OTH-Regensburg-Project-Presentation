@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { IFigure } from './figure.model'
+import { ref } from 'vue'
 
 interface IFigureStore{
   counter: Number,
@@ -14,11 +15,23 @@ export const useFigureStore = defineStore({
   } as IFigureStore),
 
   actions: {
-    getIndex(){
+    addFigure(figure:IFigure){
+      let myFig = figure
       console.log("HIT")
-      let currentCounter = this.counter;
-      this.counter++;
-      return currentCounter
+      if(!this.elements.some((fig) => fig.id === figure.id)){
+        this.elements.push(figure)
+        figure.counter = this.counter
+        this.counter++;
+      }else{
+        myFig = this.elements.find((fig) => fig.id === figure.id)
+      }
+    
+      return myFig.counter
+    },
+    reset(){
+      this.counter = 1
+      this.elements = []
+      console.log("Figures Store got reset")
     }
   }
 })
