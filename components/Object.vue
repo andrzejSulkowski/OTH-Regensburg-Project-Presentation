@@ -1,3 +1,4 @@
+
 <script setup lang="ts">
 import { defineProps, computed, ref, onMounted} from 'vue'
 import { useFigureStore } from './../stores/figures/figuresStore'
@@ -5,9 +6,11 @@ import { IFigure } from './../stores/figures/figure.model'
 
 const props = defineProps({
     localSrc: {type: String, default: (() => null)},
+    cssId: {type: String, default: (() => '1')},
     src: {type: String, default: (() => '')},
     caption: {type: String, default: (() => '')},
-    id: {type: Number, default: (() => null)}
+    id: {type: Number, default: (() => null)},
+    onMountedFunction: {type: Function, default: (() => null)}
 })
 const figureStore = useFigureStore()
 
@@ -17,12 +20,19 @@ onMounted(() => {
     const figure : IFigure = {src: props.src, caption: props.caption, id: props.id, counter: null}
 
     index.value = figureStore.addFigure(figure)
+
+    setTimeout(() => {
+        if(props.onMountedFunction){
+            props.onMountedFunction()
+        }
+    }, 2000)
+
 })
 
 </script>
 <template>
     <div> 
-        <img :src="getSrc" alt="" class="object-contain">
+        <object type="image/svg+xml" :data="getSrc" :id="props.cssId"></object>
         <span>Fig.{{index}} {{props.caption}}</span>
     </div>
 </template>

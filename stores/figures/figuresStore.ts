@@ -17,7 +17,7 @@ export const useFigureStore = defineStore({
   actions: {
     addFigure(figure:IFigure){
       let myFig = figure
-      console.log("HIT")
+
       if(!this.elements.some((fig) => fig.id === figure.id)){
         this.elements.push(figure)
         figure.counter = this.counter
