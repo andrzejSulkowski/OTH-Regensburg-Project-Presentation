@@ -12,7 +12,7 @@ const props = defineProps({
 const figureStore = useFigureStore()
 
 const getSrc = computed(() => props.localSrc ? props.localSrc : props.src)
-let index = ref(0)
+let index = ref<Number | null>(0)
 onMounted(() => {
     const figure : IFigure = {src: props.src, caption: props.caption, id: props.id, counter: null}
 

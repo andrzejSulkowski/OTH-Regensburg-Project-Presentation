@@ -3,7 +3,8 @@
 import { defineProps, computed, ref, onMounted} from 'vue'
 import { useFigureStore } from './../stores/figures/figuresStore'
 import { IFigure } from './../stores/figures/figure.model'
-
+import { NullLiteral } from '@babel/types';
+import { watch } from 'vue'
 const props = defineProps({
     localSrc: {type: String, default: (() => null)},
     cssId: {type: String, default: (() => '1')},
@@ -15,25 +16,33 @@ const props = defineProps({
 const figureStore = useFigureStore()
 
 const getSrc = computed(() => props.localSrc ? props.localSrc : props.src)
-let index = ref(0)
+let index = ref<Number|null>(0)
+const slidev = ref($slidev)
+let onMountedFunction = props.onMountedFunction()
 onMounted(() => {
     const figure : IFigure = {src: props.src, caption: props.caption, id: props.id, counter: null}
 
     index.value = figureStore.addFigure(figure)
+    let onMountedFunction = props.onMountedFunction()
 
     setTimeout(() => {
-        if(props.onMountedFunction){
-            props.onMountedFunction()
-        }
-    }, 2000)
+        //onMountedFunction.run()
+    }, 1000)
+   
+    
+    //watch(props.onMountedFunction.watch, )
 
 })
+function temp(){
+    console.log("run pulse effect")
+    onMountedFunction.run()
+}
 
 </script>
 <template>
     <div> 
         <object type="image/svg+xml" :data="getSrc" :id="props.cssId"></object>
-        <span>Fig.{{index}} {{props.caption}}</span>
+        <span @click="temp()"> Fig.{{index}} {{props.caption}}</span>
     </div>
 </template>
 
