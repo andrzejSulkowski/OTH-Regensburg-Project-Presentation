@@ -1,9 +1,9 @@
 <template>
-<div id="mobile_os_combined-ww-monthly-202110-202210" width="600" height="400" style="width:600px; height: 400px;">
-</div>
+    <div class="wrapper">
+        <div id="mobile_os_combined-ww-monthly-202110-202210" width="600" height="400" style="width:600px; height: 400px;"></div>
+        <span>Fig.{{index}} {{props.caption}}</span>
+    </div>
 
-
-<span>Fig.{{index}} {{props.caption}}</span>
 </template>
 
 <script setup lang="ts">
@@ -36,10 +36,30 @@ const figureStore = useFigureStore()
             src
             );
             document.head.appendChild(recaptchaScript);
-            }
-
+        }
+        removeBackground(0)
     })
+    function removeBackground(counter: number){
+        setTimeout(() => {
+            let success = tryToRemoveBackground(counter)
+            if(!success){
+                removeBackground(counter++)
+            }
+        }, 100)
+    }
 
+    function tryToRemoveBackground(counter:number){
+        let background = document.querySelector('#mobile_os_combined-ww-monthly-202110-202210 g')
+        if(background){
+            background?.parentNode?.removeChild(background)
+            return true
+        }else if(counter > 100){
+            return true
+        }else{
+            return false
+        }
+        
+    }
 </script>
 
 <style scoped>
@@ -48,9 +68,9 @@ const figureStore = useFigureStore()
         display: flex;
         flex-direction: column;
     }
-    div span{
-        
-        margin-top: 50px;
+    span{
+        width: 100%;
+        margin-top: 10px;
         text-align: center;
         font-size: var(--caption-font-size);
         color: rgb(185, 185, 185);
