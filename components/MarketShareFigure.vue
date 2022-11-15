@@ -42,7 +42,7 @@ const figureStore = useFigureStore()
 
 </script>
 
-<style>
+<style scoped>
     div{
         width: 100%;
         display: flex;
